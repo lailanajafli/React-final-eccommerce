@@ -55,9 +55,7 @@ export default function MCard(props) {
                         {checkIfProductInStore() ? "Already in the Cart" : "Add To Cart"}
                     </Button>
                 </div>
-                {isShoppingCard && 
-                    <Button onClick={removeCard} variant="danger" className="remove-button">X</Button>
-                }
+            
             </Card.Body>
         </Card>
     );
