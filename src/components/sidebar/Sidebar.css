@@ -1,0 +1,241 @@
+/* Detail.css */
+
+/* .detail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.detail-header {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.detail-title {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.detail-description {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.detail-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.d-card {
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.d-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.d-card-image {
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+}
+
+.d-card-body {
+    padding: 20px;
+}
+
+.d-card-title {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.d-card-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.d-card-price {
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.add-to-cart-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    padding: 8px 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.add-to-cart-button:hover {
+    background-color: #0056b3;
+} */
+
+
+
+/* Sidebar.css */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.sidebar {
+    position: fixed;
+    width: 315px;
+    top: 0;
+    right: -316px; /* Kapalı konumda sağ tarafta tut */
+    height: 100%;
+    background-color: #fff;
+    padding: 1rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    transition: right 0.5s ease;
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+.sidebar.open {
+    right: 0; /* Açık konumda sağa kaydır */
+}
+
+.sidebar-content {
+    height: 100%;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999; /* Overlay'ı sidebar'ın üzerine getir */
+    display: none; /* Başlangıçta gizle */
+}
+
+
+
+.d-cards-container {
+    margin-top: 1rem;
+}
+
+.d-card {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+
+}
+
+
+.d-card-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.details {
+    flex-grow: 1;
+    padding: 15px;
+}
+
+.d-card-title {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.d-card-description {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.d-button-container {
+    display: flex;
+    align-items: center;
+}
+
+.d-price {
+    color: red;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.d-remove-button {
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-left: auto;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.d-remove-button:hover {
+    background-color: #c82333;
+}
+
+.checkout {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.checkout p {
+    font-size: 1.2rem;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.checkout button {
+    background-color: #007bff;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.checkout button:hover {
+    background-color: #0056b3;
+} 
+
+
+
+
+
+
+
+
