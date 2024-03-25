@@ -12,7 +12,7 @@ export default function MCard(props) {
     const dispatch = useDispatch();
     const cards = useSelector(state => state.product.cartItems);
     const { title, image, description, price, isShoppingCard, id } = props;
-    const [showFullDescription, setShowFullDescription] = useState(false);
+    const [showFullDescription] = useState(false);
 
     const handleCard = () => {
         dispatch(addToCard(props));
@@ -44,11 +44,6 @@ export default function MCard(props) {
             <Card.Img className="card-image" variant="top" src={image} />
             <Card.Body>
                 <Card.Title className="card-title">{title} - {id}</Card.Title>
-                <Card.Text className="card-description">
-                    {showFullDescription ? description : getFirst30Characters(description)}
-                    {!showFullDescription && <span className="show-more" onClick={() => setShowFullDescription(true)}>Show more</span>}
-                    {showFullDescription && <span className="show-less" onClick={() => setShowFullDescription(false)}>Show less</span>}
-                </Card.Text>
                 <div className="button-container">
                     <div className="price">{price} $</div>
                     <Button disabled={checkIfProductInStore()} onClick={handleCard} variant="primary" className="add-to-cart-button">
