@@ -1,39 +1,23 @@
 // Card.jsx
+// Card.jsx
 
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCard, removeFromCard } from '../app/features/products/productSlice';
+import { addToCard } from '../app/features/products/productSlice';
 import Button from 'react-bootstrap/Button';
-
 import Card from 'react-bootstrap/Card';
 import './Card.css';
 
 export default function MCard(props) {
     const dispatch = useDispatch();
     const cards = useSelector(state => state.product.cartItems);
-    const { title, image, description, price, isShoppingCard, id } = props;
-    const [showFullDescription] = useState(false);
+    const { title, image, description, price, id } = props;
 
     const handleCard = () => {
         dispatch(addToCard(props));
     }
 
     const checkIfProductInStore = () => Boolean(cards?.find(el => el.id === id));
-
-    const getFirst30Characters = (text) => {
-        let trimmedText = text.trim();
-        let truncatedText = '';
-
-        for (let i = 0; i < trimmedText.length; i++) {
-            if (i < 30) {
-                truncatedText += trimmedText[i];
-            } else {
-                break;
-            }
-        }
-
-        return truncatedText;
-    }
 
     return (
         <Card className="m-card">
@@ -46,7 +30,6 @@ export default function MCard(props) {
                         {checkIfProductInStore() ? "Already in the Cart" : "Add To Cart"}
                     </Button>
                 </div>
-            
             </Card.Body>
         </Card>
     );
