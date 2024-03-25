@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
 import './Navbar.css';
-import Detail from '../detail/Detail';
+import Detail from '../sidebar/Sidebar';
 import { faStar, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 

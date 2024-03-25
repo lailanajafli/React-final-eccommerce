@@ -1,19 +1,20 @@
-//Navbar.jsx
-
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
 import './Navbar.css';
-import Detail from '../detail/Detail';
+import Sidebar from '../sidebar/Sidebar'; // Import Sidebar component
 import { faStar, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
 
 function Navbar() {
   const cards = useSelector(state => state.product.cartItems);
   const [searchTerm, setSearchTerm] = useState('');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
+  const toggleSidebar = () => {
+    setSidebarOpen(!sidebarOpen);
+  }
 
   return (
     <nav className="navbar">
@@ -32,9 +33,12 @@ function Navbar() {
           <div className='mylogo' ><Link to="/"><img style={{ width: '78px', height: '48px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}
             src="./logo.jpg" alt="" /></Link></div>
           <input type="text" placeholder="Search..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="search-input" />
-          <Link to="/detail" className="navbar-brand">
+          <div>
+          <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar}/>
+          <div onClick={toggleSidebar} className="navbar-brand">
             <FontAwesomeIcon icon={faCartShopping} size='xl' style={{ color: "#ffffff", position: 'relative', top: '11px' }} /> <div className='badgecount'> <Badge >{cards.length}</Badge></div>
-          </Link>
+          </div>
+          </div>
         </div>
         <div >
           <div className='colorButton'>
@@ -84,4 +88,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
