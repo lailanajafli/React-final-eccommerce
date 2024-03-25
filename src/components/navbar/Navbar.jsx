@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Badge from 'react-bootstrap/Badge';
 import './Navbar.css';
@@ -15,6 +15,14 @@ function Navbar() {
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
   }
+
+  const filteredProducts = useSelector(state =>
+    state.product.cartItems.filter(item =>
+      item.title.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  );
+
+  
 
   return (
     <nav className="navbar">
@@ -34,6 +42,7 @@ function Navbar() {
             src="./logo.jpg" alt="" /></Link></div>
           <input type="text" placeholder="Search..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className="search-input" />
           <div>
+            
           <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar}/>
           <div onClick={toggleSidebar} className="navbar-brand">
             <FontAwesomeIcon icon={faCartShopping} size='xl' style={{ color: "#ffffff", position: 'relative', top: '11px' }} /> <div className='badgecount'> <Badge >{cards.length}</Badge></div>
