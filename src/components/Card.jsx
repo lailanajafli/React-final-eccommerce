@@ -18,10 +18,6 @@ export default function MCard(props) {
         dispatch(addToCard(props));
     }
 
-    const removeCard = () => {
-        dispatch(removeFromCard(id));
-    }
-
     const checkIfProductInStore = () => Boolean(cards?.find(el => el.id === id));
 
     const getFirst30Characters = (text) => {
