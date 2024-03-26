@@ -11,6 +11,7 @@ function Navbar() {
   const cards = useSelector(state => state.product.cartItems);
   const [searchTerm, setSearchTerm] = useState('');
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const cartItemCount = cards.length;
 
   const toggleSidebar = () => {
     setSidebarOpen(!sidebarOpen);
@@ -45,7 +46,7 @@ function Navbar() {
             
           <Sidebar isOpen={sidebarOpen} toggleSidebar={toggleSidebar}/>
           <div onClick={toggleSidebar} className="navbar-brand">
-            <FontAwesomeIcon icon={faCartShopping} size='xl' style={{ color: "#ffffff", position: 'relative', top: '11px' }} /> <div className='badgecount'> <Badge >{cards.length}</Badge></div>
+            <FontAwesomeIcon icon={faCartShopping} size='xl' style={{ color: "#ffffff", position: 'relative', top: '11px' }} /> <div className='badgecount'> <Badge >{cartItemCount}</Badge></div>
           </div>
           </div>
         </div>
