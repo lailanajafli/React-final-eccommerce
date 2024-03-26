@@ -1,29 +1,47 @@
-//productSlice.js
 
-import {createSlice} from "@reduxjs/toolkit"
-
+import { createSlice } from "@reduxjs/toolkit";
 
 export const productSlice = createSlice({
-    name: 'product',
-    initialState: {
-        cartItems: [],
-        items: []
-    },
-    reducers: {
-        addToCard: (state, action) =>{
-            state.cartItems.push(action.payload)
-        },
-        removeFromCard: (state, action) =>{
-           console.log(action.payload);
-           state.cartItems = state.cartItems.filter(el => el.id != action.payload)
-           console.log(state.cartItems);
-        },
-        fillBucket: (state, action) =>{
-            state.items = action.payload
+  name: "product",
+  initialState: {
+    cartItems: [],
+    items: [],
+  },
+  reducers: {
+    addToCard: (state, action) => {
+        const newItem = action.payload;
+        const existingItem = state.cartItems.find(item => item.id === newItem.id);
+      
+        if (existingItem) {
+          existingItem.quantity++;
+        } else {
+          state.cartItems.push({ ...newItem, quantity: 1 });
         }
-    }
-})
+      },
+      
+    removeFromCard: (state, action) => {
+      state.cartItems = state.cartItems.filter((el) => el.id !== action.payload);
+    },
+    fillBucket: (state, action) => {
+      state.items = action.payload;
+    },
+    decrementQuantity: (state, action) => {
+      const { id } = action.payload;
+      const item = state.cartItems.find((el) => el.id === id);
+      if (item && item.quantity > 0) {
+        item.quantity -= 1;
+      }
+    },
+    incrementQuantity: (state, action) => {
+      const { id } = action.payload;
+      const item = state.cartItems.find((el) => el.id === id);
+      if (item) {
+        item.quantity += 1;
+      }
+    },
+  },
+});
 
-export const {addToCard, removeFromCard, fillBucket} = productSlice.actions
+export const { addToCard, removeFromCard, fillBucket, decrementQuantity, incrementQuantity } = productSlice.actions;
 
-export default productSlice.reducer
+export default productSlice.reducer;
