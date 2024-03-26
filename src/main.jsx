@@ -10,7 +10,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import WomenProducts from './components/WomenProducts';
 import MenProducts from './components/MenProducts';
-// import GeneralLayout from './layouts/GeneralLayout';
+import ViewCart from './components/viewcart/ViewCart';
 import Accessories from './components/Accessories.jsx';
 import Electronics from './components/Electronics.jsx';
 // function createInsideComponent(component) {
@@ -31,6 +31,7 @@ createRoot(document.getElementById('root')).render(
           <Route path='/men' element={<MenProducts />} />
           <Route path='/electronics' element={<Electronics />} />
           <Route path='/' element={<App />} />
+          <Route path='/viewcart' element={<ViewCart />} />
         </Routes>
       {/* </GeneralLayout> */}
     </BrowserRouter>
