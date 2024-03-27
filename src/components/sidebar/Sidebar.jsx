@@ -23,7 +23,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
     const checkIfProductInStore = (id) => Boolean(cards?.find(el => el.id === id));
 
     const handleCloseSidebar = () => {
-        toggleSidebar(); // Sidebar'ı kapatmak için toggleSidebar fonksiyonunu çağır
+        toggleSidebar();
     }
 
     return (
@@ -31,7 +31,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
             <div>
                 <div className={`sidebar ${isOpen ? 'open' : ''}`}>
                     <div className="sidebar-content">
-                        <button className="close-button" onClick={handleCloseSidebar}>X</button> {/* Kapatma düğmesi */}
+                        <button className="close-button" onClick={handleCloseSidebar}>X</button>
                         <div className="d-cards-container">
                             {cards.map(el => (
                                 <div key={el.id} className="d-card">
@@ -52,7 +52,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                         </div>
                     </div>
                     <div className="checkout">
-                        <p>Total Price: {cards.reduce((a, b) => a + b.price, 0)}$</p>
+                        <p>Total Price: <span> {cards.reduce((a, b) => a + b.price, 0)}$</span></p>
                         <Link to="/viewcart"><button className="add-to-cart-button">View Cart</button></Link>
                     </div>
                 </div>
