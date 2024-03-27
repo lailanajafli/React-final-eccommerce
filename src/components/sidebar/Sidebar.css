@@ -88,20 +88,9 @@
 }
 
 .d-price {
-    color: red;
+    color: #9a12b3;
     font-weight: bold;
     margin-right: 10px;
-}
-
-.d-remove-button {
-    background-color: #dc3545;
-    border: none;
-    color: white;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-left: auto;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .d-remove-button:hover {
@@ -116,6 +105,11 @@
 .checkout p {
     font-size: 1.2rem;
     color: black;
+    margin-bottom: 10px;
+}
+.checkout span {
+    font-size: 1.2rem;
+    color: #9a12b3;
     margin-bottom: 10px;
 }
 
