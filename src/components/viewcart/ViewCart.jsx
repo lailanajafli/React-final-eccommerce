@@ -1,70 +1,10 @@
-// import React from 'react';
-// import Card from 'react-bootstrap/Card';
-// import './ViewCart.css';
-// import Navbar2 from '../navbar/Navbar2';
-// import { useSelector, useDispatch } from 'react-redux';
-// import { addToCard, removeFromCard } from '../../app/features/products/productSlice';
-// import { Badge } from 'react-bootstrap';
-
-// export default function viewCart() {
-//     const dispatch = useDispatch();
-//     const cards = useSelector(state => state.product.cartItems);
-
-//     const checkIfProductInStore = (id) => Boolean(cards?.find(el => el.id === id));
-
-//     return (
-//         <div>
-//             <Navbar2 />
-//             <div className='container' style={{ display: 'flex', flexDirection: 'column', gap: '2rem', padding: '0 30px' }}>
-//                 {cards.map(el => (
-//                     <div key={el.id}>
-//                         <div className="v-card">
-//                             <img className="v-card-image" src={el.image} alt={el.title} />
-//                             <div className='v-between'>
-//                                 <div >
-//                                     <p className="v-card-title">{el.title}</p>
-//                                     <p className="v-card-description">{el.description}</p>
-//                                 </div>
-//                                 <div className="v-button-container">
-//                                     <button>-</button>
-//                                     <p>{el.quantitiy}</p>
-//                                     <button>+</button> 
-//                                 </div>
-//                             </div>
-//                         </div>
-//                     </div>
-//                 ))}
-//             </div>
-//             <div>
-//                 <p className='v-total'>Total Price: {cards.reduce((a, b) => a + b.price, 0)}$</p>
-//                 <button>Buy</button>
-//             </div>
-//         </div>
-//     );
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 import React from "react";
 import Card from "react-bootstrap/Card";
 import "./ViewCart.css";
 import Navbar2 from "../navbar/Navbar2";
 import { useSelector, useDispatch } from "react-redux";
-import { decrementQuantity, incrementQuantity } from "../../app/features/products/productSlice";
+import { decrementQuantity, incrementQuantity, removeFromCard } from "../../app/features/products/productSlice";
 
 
 export default function ViewCart() {
@@ -79,6 +19,16 @@ export default function ViewCart() {
         dispatch(incrementQuantity({ id }));
     };
 
+    const removeCard = (id) => { 
+        dispatch(removeFromCard(id));
+    };
+
+
+    const checkIfProductInStore = (id) => Boolean(cards?.find(el => el.id === id));
+    const totalPrice = cards.reduce((total, item) => total + item.price * item.quantity, 0);
+    const shippingCost = totalPrice < 150 ? 4 : 0;
+    const finalPrice = totalPrice + shippingCost;
+
     return (
         <div>
             <Navbar2 />
@@ -91,32 +41,54 @@ export default function ViewCart() {
                     padding: "0 30px",
                 }}
             >
-                {cards.map((el) => (
-                    <div key={el.id}>
-                        <div className="v-card">
-                            <img className="v-card-image" src={el.image} alt={el.title} />
-                            <div className="v-between">
-                                <div>
-                                    <p className="v-card-title">{el.title}</p>
-                                    <p className="v-card-description">{el.description}</p>
-                                </div>
-                                <div className="v-button-container">
-                                    <button onClick={() => DecrementQuantity(el.id)}>-</button>
-                                    <p style={{ color: 'black' }} >{el.quantity}</p> {/* Miktarı göstermek için el.quantity kullanıldı */}
-                                    <button onClick={() => IncrementQuantity(el.id)}>+</button>
+                <div className="middle">
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                        {cards.map((el) => (
+                            <div key={el.id}>
+                                <div className="v-card">
+                                    <div className="v-between">
+                                        <div>
+                                            <img className="v-card-image" src={el.image} alt={el.title} />
+                                        </div>
+                                        <div>
+                                            <p className="v-card-title">{el.title}</p>
+                                            <p className="v-card-description">{el.description}</p>
+                                        </div>
+                                        <div className="v-button-container">
+                                            <button onClick={() => DecrementQuantity(el.id)}>-</button>
+                                            <p style={{ color: 'black' }} >{el.quantity}</p>
+                                            <button onClick={() => IncrementQuantity(el.id)}>+</button>
+                                        </div>
+                                        <div>
+                                            <p className="d-price">{el.price}$</p>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        {checkIfProductInStore(el.id) &&
+                                            <button onClick={() => removeCard(el.id)} variant="danger" className="v-remove-button">X</button>
+                                        }
+                                    </div>
                                 </div>
                             </div>
+                        ))}
+                    </div>
+                    <div className="v-checkout">
+                        <div>
+                            <p>Order Summary</p>
+                            <p className="v-total">
+                                Total Price:{" "}
+                                <span> {totalPrice.toFixed(2)}$</span>
+                            </p>
+                            <p>Cargo: <span> {shippingCost}$</span></p>
+                            {totalPrice > 150 && <p className="freeCargo">Free Cargo for $150 and Above (Seller Pays): <span> -4$</span></p>}
+                            <div className="line"></div>
+                            <p>Final Price: <span> {finalPrice.toFixed(2)}$</span></p>
+                            <button className="add-to-cart-button">Confirm Cart</button>
                         </div>
                     </div>
-                ))}
-            </div>
-            <div>
-                <p className="v-total">
-                    Total Price:{" "}
-                    {cards.reduce((a, b) => a + b.price * b.quantity, 0).toFixed(2)}$
-                </p>
-                <button>Buy</button>
+                </div>
             </div>
         </div>
     );
 }
+
