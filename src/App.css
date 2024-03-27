@@ -6,6 +6,7 @@
 body {
   font-family: Arial, sans-serif;
   background-color: #f2f2f2;
+  box-sizing: border-box;
   margin: 0;
 
 }
@@ -15,15 +16,12 @@ nav a {
   text-decoration: none;
 }
 
-
-
-/* Kart stilleri */
 .card {
   background-color: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  width: calc(33.333% - 40px); /* Kartları sıralı bir şekilde göstermek için */
+  width: calc(33.333% - 40px);
   box-sizing: border-box;
 }
 
