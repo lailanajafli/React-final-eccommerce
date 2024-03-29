@@ -4,9 +4,9 @@
 
 .sidebar {
     position: fixed;
-    width: 315px;
+    width: 370px;
     top: 0;
-    right: -316px; /* Kapalı konumda sağ tarafta tut */
+    right: -371px; 
     height: 100%;
     background-color: #fff;
     padding: 1rem;
