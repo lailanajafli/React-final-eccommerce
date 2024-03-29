@@ -1,40 +1,36 @@
 //Products.jsx
 
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fillBucket } from "../app/features/products/productSlice";
-import './products.css';
+import "./products.css";
 import MCard from "./Card";
-import { FiAlignJustify } from "react-icons/fi";
+import Navbar from "./navbar/Navbar";
+import { useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
 
 export default function Products() {
-    const [localSortedItems, setLocalSortedItems] = useState([]);
-    const dispatch = useDispatch();
-    const items = useSelector((state) => state.product.items);
+  const [data, setData] = useState([]);
+  const allProducts = useSelector((state) => state.product.items);
 
-    useEffect(() => {
-        async function fetchFakeData() {
-            const list = await fetch("/data.json");
-            const res = await list.json();
-            dispatch(fillBucket(res));
-        }
-        if (!items.length) {
-            fetchFakeData();
-        } else {
-            setLocalSortedItems([...items]);
-        }
-    }, [dispatch, items]);
+  useEffect(() => {
+    setData(allProducts);
+  }, [allProducts]);
 
-    return (
-        <div>
-            <div className="products-header">
-
-            </div>
-            <div className="products-container"> {}
-                {localSortedItems.map((el) => (
-                    <MCard key={el.id} {...el} />
-                ))}
-            </div>
-        </div>
+  const searchTerm = useSelector((state) => state.filteredValue.value);
+  useEffect(() => {
+    const filteredData = allProducts.filter(({ title }) =>
+      title.toLowerCase().includes(searchTerm.toLowerCase())
     );
+    setData(filteredData);
+  }, [searchTerm]);
+
+  return (
+    <div>
+      <Navbar />
+      <div className="products-header"></div>
+      <div className="products-container">
+        {data?.map((el) => (
+          <MCard key={el.id} {...el} />
+        ))}
+      </div>
+    </div>
+  );
 }
