@@ -11,6 +11,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import WomenProducts from './components/WomenProducts';
 import MenProducts from './components/MenProducts';
 import ViewCart from './components/viewcart/ViewCart';
+import Pay from './components/pay/Pay';
 import Accessories from './components/Accessories.jsx';
 import Electronics from './components/Electronics.jsx';
 // function createInsideComponent(component) {
@@ -25,14 +26,7 @@ createRoot(document.getElementById('root')).render(
     </SidebarProvider> */}
     <BrowserRouter>
       {/* <GeneralLayout> */}
-        <Routes>
-          <Route path='/women' element={<WomenProducts />} />
-          <Route path='/accessories' element={<Accessories />} />
-          <Route path='/men' element={<MenProducts />} />
-          <Route path='/electronics' element={<Electronics />} />
-          <Route path='/' element={<App />} />
-          <Route path='/viewcart' element={<ViewCart />} />
-        </Routes>
+       <App />
       {/* </GeneralLayout> */}
     </BrowserRouter>
   </Provider>
