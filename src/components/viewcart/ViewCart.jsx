@@ -2,6 +2,7 @@
 import React from "react";
 import Card from "react-bootstrap/Card";
 import "./ViewCart.css";
+import { Link } from 'react-router-dom';
 import Navbar2 from "../navbar/Navbar2";
 import { useSelector, useDispatch } from "react-redux";
 import { decrementQuantity, incrementQuantity, removeFromCard } from "../../app/features/products/productSlice";
@@ -83,7 +84,7 @@ export default function ViewCart() {
                             {totalPrice > 150 && <p className="freeCargo">Free Cargo for $150 and Above (Seller Pays): <span> -4$</span></p>}
                             <div className="line"></div>
                             <p>Final Price: <span> {finalPrice.toFixed(2)}$</span></p>
-                            <button className="add-to-cart-button">Confirm Cart</button>
+                            <Link to='/pay'><button className="add-to-cart-button">Confirm Cart</button></Link>
                         </div>
                     </div>
                 </div>
