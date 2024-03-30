@@ -1,11 +1,13 @@
 import React, { Component } from "react";
 import './Pay.css'
-// Import crad images
-import Kapital from "./Kapital.png";
+import defaultCard from "./credit-card.svg";
 import visa from "./visa.svg";
+import { Container } from "react-bootstrap";
+import background from "./back.png";
 import master from "./mastercard.svg";
 import amex from "./amex.svg";
 import disc from "./discover.svg";
+
 
 const divStyle = {
   width: "66%",
@@ -24,7 +26,7 @@ const initState = {
   monthError: "",
   yearError: "",
   csvError: "",
-  cardType: '',
+  cardType: defaultCard,
   months: [
     "01",
     "02",
@@ -40,13 +42,16 @@ const initState = {
     "12"
   ],
   years: [
+    "2018",
+    "2019",
+    "2020",
+    "2021",
+    "2022",
+    "2023",
     "2024",
     "2025",
     "2026",
-    "2027",
-    "2028",
-    "2029",
-    "2030"
+    "2027"
   ]
 };
 
@@ -83,22 +88,19 @@ class Pay extends Component {
 
   // Validate the credit card no
   validateCreditCardNumber = ccNum => {
-    const kapitalPattern = /^4169\d{12}$/;
+    // Regex to match card type
     const visaPattern = /^(?:4[0-9]{12}(?:[0-9]{3})?)$/;
     const mastPattern = /^(?:5[1-5][0-9]{14})$/;
     const amexPattern = /^(?:3[47][0-9]{13})$/;
     const discPattern = /^(?:6(?:011|5[0-9][0-9])[0-9]{12})$/;
 
-    const isKapital = kapitalPattern.test(ccNum) === true;
     const isVisa = visaPattern.test(ccNum) === true;
     const isMast = mastPattern.test(ccNum) === true;
     const isAmex = amexPattern.test(ccNum) === true;
     const isDisc = discPattern.test(ccNum) === true;
 
-    if (isKapital || isVisa || isMast || isAmex || isDisc) {
-      if (isKapital) {
-        this.setState({ cardType: Kapital });
-      } else if (isVisa) {
+    if (isVisa || isMast || isAmex || isDisc) {
+      if (isVisa) {
         this.setState({ cardType: visa });
       } else if (isMast) {
         this.setState({ cardType: master });
@@ -108,7 +110,7 @@ class Pay extends Component {
         this.setState({ cardType: disc });
       }
     } else {
-      this.setState({ cardType: Kapital });
+      this.setState({ cardType: defaultCard });
       return false;
     }
     return true;
@@ -170,94 +172,141 @@ class Pay extends Component {
 
   render() {
     return (
-        <div className="payment-form">
-        <div className="field">
-          <label className="field-label">Customer Name</label>
-          <input
-            name="name"
-            value={this.state.name}
-            onChange={event => this.handleUserInput(event)}
-            className="input"
-            type="text"
-            placeholder="Customer Name"
-          />
-          <div className="error-message">{this.state.nameError}</div>
-        </div>
-
-        <div className="field">
-          <label className="field-label">Card No</label>
-          <input
-            value={this.state.cardno}
-            onChange={event => this.handleUserInput(event)}
-            onBlurCapture={this.handleOnFocus}
-            name="cardno"
-            className="input"
-            type="number"
-            placeholder="Card No"
-          />
-          <div className="error-message">{this.state.cardnoError}</div>
-          <figure className="image is-32x32">
-            <img src={this.state.cardType} alt="Card Type" />
-          </figure>
-        </div>
-
-        <div className="field">
-          <label className="field-label">Exp Date (Month / Year)</label>
-          <div className="columns">
-            <div className="column">
-              <div className="select">
-                <select
-                  value={this.state.month}
-                  name="month"
-                  onChange={event => this.handleUserInput(event)}
-                >
-                  <option />
-                  {this.state.months.map(m => (
-                    <option key={m}>{m}</option>
-                  ))}
-                </select>
-              </div>
+      <Container style={{marginTop: '7rem'}}>
+      <div style={{ width: '668px' }} className="payment-form">
+        <div className="cont" >
+          <div className="labelinput">
+            <div className="labeli">
+              <label className="label">Customer Name</label>
             </div>
-            <div className="column">
-              <div className="select">
-                <select
-                  value={this.state.year}
-                  name="year"
-                  onChange={event => this.handleUserInput(event)}
-                >
-                  <option />
-                  {this.state.years.map(y => (
-                    <option key={y}>{y}</option>
-                  ))}
-                </select>
+            <div className="field-body">
+              <div className="field">
+                <p className="control">
+                  <input
+                    name="name"
+                    value={this.state.name}
+                    onChange={event => this.handleUserInput(event)}
+                    className="input"
+                    type="text"
+                    placeholder="Customr Name"
+                  />
+                </p>
+                <div style={{ color: "red" }}>{this.state.nameError}</div>
               </div>
             </div>
           </div>
-          <div className="error-message">{this.state.monthError} {this.state.yearError}</div>
-        </div>
 
-        <div className="field">
-          <label className="field-label">CSV</label>
-          <input
-            value={this.state.csv}
-            onChange={event => this.handleUserInput(event)}
-            name="csv"
-            className="input"
-            type="number"
-            placeholder="CSV No"
-          />
-          <div className="error-message">{this.state.csvError}</div>
-        </div>
+          <div className="labelinput">
+            <div className="labeli">
+              <label className="label">Card No</label>
+            </div>
 
-        <div className="field">
-          <button
-            onClick={event => this.handleFormSubmitEvent(event)}
-            className="button is-primary"
-          >
-            Next
-          </button>
+            <div className="field-body">
+              <div className="field">
+                <p className="control">
+                  <input
+                    value={this.state.cardno}
+                    onChange={event => this.handleUserInput(event)}
+                    onBlurCapture={this.handleOnFocus}
+                    name="cardno"
+                    className="input"
+                    type="number"
+                    placeholder="Card No"
+                  />
+                </p>
+                <figure style={{ margin: '0' }}>
+                  <img style={{ width: '54px' }} src={this.state.cardType} />
+                </figure>
+                <div style={{ color: "red" }}>{this.state.cardnoError}</div>
+              </div>
+            </div>
+          </div>
+          <div style={{ display: 'flex', justifyContent: 'center', flexWrap: 'wrap', alignItems: 'center' }}>
+            <div style={{ gap: '1rem', marginBottom: '1rem' }} className="labelinput">
+              <div className="labeli">
+                <label className="label">Exp Date (Month / Year)</label>
+              </div>
+              <div className="field-body">
+                <div className="control">
+                  <div className="columns">
+                    <div className="column">
+                      <div className="control">
+                        <div className="select">
+                          <select className="select1"
+                            value={this.state.month}
+                            name="month"
+                            onChange={event => this.handleUserInput(event)}
+                          >
+                            <option />
+                            {this.state.months.map(m => (
+                              <option key={m}>{m}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="column">
+                      <div className="control">
+                        <div className="select">
+                          <select className="select2"
+                            value={this.state.year}
+                            name="year"
+                            onChange={event => this.handleUserInput(event)}
+                          >
+                            <option />
+                            {this.state.years.map(y => (
+                              <option key={y}>{y}</option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div style={{ color: "red" }}>
+                    {this.state.monthError} {this.state.yearError}
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div className="labelinput">
+              <div className="labeli">
+                <label className="label">CSV</label>
+              </div>
+              <div className="field-body">
+                <p className="control">
+                  <input
+                    value={this.state.csv}
+                    onChange={event => this.handleUserInput(event)}
+                    name="csv"
+                    className="input"
+                    type="number"
+                    placeholder="CSV No"
+                  />
+                </p>
+                <div style={{ color: "red" }}>{this.state.csvError}</div>
+
+              </div>
+            </div>
+          </div>
+          <div className="labelinput">
+            <div className="labeli" />
+            <div className="field-body">
+              <div className="field">
+                <a
+                  onClick={event => this.handleFormSubmitEvent(event)}
+                  className="add-to-cart-button" style={{padding: '13px 29px', borderRadius: '9px'}}
+                >
+                  Next
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      </Container>
     );
   }
 }

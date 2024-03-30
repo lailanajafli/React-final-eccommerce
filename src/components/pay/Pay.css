@@ -1,60 +1,86 @@
+
 .payment-form {
-    width: 400px;
-    margin: 50px auto;
-    padding: 30px;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    font-family: Arial, sans-serif;
+  width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fffffff0;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.field {
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+
+}
+
+.field-body {
+  margin-top: 1rem;
+}
+
+.label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  transition: border-color 0.3s;
+}
+
+.input:focus,
+.select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+
+.button {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.labelinput{
+  display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.columns {
+  display: flex;
+}
+
+
+.select1 {
+  padding: 8px 14px;
+}
+
+.select2 {
+  padding: 8px 10px;
+}
+
+@media (max-width: 540px) {
+  .figure {
+      width: 54px;
   }
-  
-  .field {
-    margin-bottom: 20px;
-  }
-  
-  .label {
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 5px;
-  }
-  
-  .input,
-  .select {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    transition: border-color 0.3s;
-  }
-  
-  .input:focus,
-  .select:focus {
-    outline: none;
-    border-color: #007bff;
-  }
-  
-  .select {
-    background-image: url('data:image/svg+xml;utf8,<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M10 12L6 7.999 14 7.999 10 12z" fill="%23333"/></svg>');
-    background-repeat: no-repeat;
-    background-position: right 10px center;
-    cursor: pointer;
-  }
-  
-  .button {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
-  
-  .button:hover {
-    background-color: #0056b3;
-  }
-  
+}
+
