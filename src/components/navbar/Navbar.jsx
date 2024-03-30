@@ -7,6 +7,7 @@ import Sidebar from "../sidebar/Sidebar"; // Import Sidebar component
 import { faStar, faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { changeValue } from "../../app/features/filteredValue";
+import { sortProducts } from "../../app/features/products/productSlice";
 
 function Navbar() {
   const cards = useSelector((state) => state.product.cartItems);
@@ -23,6 +24,10 @@ function Navbar() {
 
   const handleChange = (e) => {
     dispatch(changeValue(e.target.value))
+  };
+
+  const handleSort = (sortType) => {
+    dispatch(sortProducts(sortType));
   };
 
   return (
@@ -185,12 +190,12 @@ function Navbar() {
             </Link>
           </li>
           <li className="menu-item">
-            <Link className="link" to="/low">
+            <Link onClick={() => handleSort('asc')} className="link">
               Price high to low
             </Link>
           </li>
           <li className="menu-item">
-            <Link className="link" to="/high">
+            <Link onClick={() => handleSort('desc')} className="link">
               Price low to high
             </Link>
           </li>

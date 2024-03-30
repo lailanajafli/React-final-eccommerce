@@ -6,6 +6,7 @@ export const productSlice = createSlice({
   initialState: {
     cartItems: [],
     items: [],
+    sortBy: null,
   },
   reducers: {
     addToCard: (state, action) => {
@@ -25,6 +26,9 @@ export const productSlice = createSlice({
     fillBucket: (state, action) => {
       state.items = action.payload;
     },
+    sortProducts: (state, action) => {
+      state.sortBy = action.payload;
+    },
     decrementQuantity: (state, action) => {
       const { id } = action.payload;
       const item = state.cartItems.find((el) => el.id === id);
@@ -42,6 +46,6 @@ export const productSlice = createSlice({
   },
 });
 
-export const { addToCard, removeFromCard, fillBucket, decrementQuantity, incrementQuantity } = productSlice.actions;
+export const { addToCard, removeFromCard, fillBucket, sortProducts, decrementQuantity, incrementQuantity } = productSlice.actions;
 
 export default productSlice.reducer;
