@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { addToCard, removeFromCard } from '../../app/features/products/productSlice';
-import './Sidebar.css'; 
+import './Sidebar.css';
 
 export default function Sidebar({ isOpen, toggleSidebar }) {
     const dispatch = useDispatch();
@@ -39,9 +39,11 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
                                     <div htmlFor={`check${el.id}`}></div>
                                     <img className="d-card-image" src={el.image} alt={el.title} />
                                     <div className="details">
+                                        <div>
                                         <p className="d-card-title">{el.title}</p>
+                                        <p className="d-price">{el.price} $</p>
+                                        </div>
                                         <div className="d-button-container">
-                                            <div className="d-price">{el.price} $</div>
                                             {checkIfProductInStore(el.id) &&
                                                 <button onClick={() => removeCard(el.id)} variant="danger" className="d-remove-button">X</button>
                                             }
